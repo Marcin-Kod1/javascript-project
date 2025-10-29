@@ -4,7 +4,7 @@ import fs from "fs";
 const app = express();
 app.use(express.json());
 
-const data = JSON.parse(fs.readFileSync("db.json", "utf-8"));
+const data = JSON.parse(fs.readFileSync("data/db.json", "utf-8"));
 let tests = data.tests;
 
 app.get("/", (req, res) => {
@@ -38,7 +38,7 @@ app.post("/api/tests", (req, res) => {
 
   // zapis do pliku 
   const newData = { tests };
-  fs.writeFileSync("db.json", JSON.stringify(newData, null, 2));
+  fs.writeFileSync("data/db.json", JSON.stringify(newData, null, 2));
 
   res.status(201).json(newTest);
 });
